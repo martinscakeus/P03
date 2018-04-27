@@ -1,0 +1,103 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{fixlatvian}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\usepackage[siunitx,europeanresistors,americaninductors]{circuitikz}
+\usepackage{tikz}
+\title{1.laboratorijas darbs(Vienkāršu elektrisku shēmu modelēšana)}
+\author{Mārtiņš Cakeus}
+\date{Marts 2018}
+
+\begin{document}
+
+\maketitle
+\chapter{Teorētiskā daļa}
+\section{Ķēdes aprēķins}
+Izmantojot svavus studenta apliecības datus aprēķināju R1;V1;R2. V1 aprēķinaju dalot pēdējos 3 apliecības ciparus ar 10.R1 ieguvu izvēloties pēdējo 3 ciparu 2 ciparu +1 .R2 ieguvu ņemot apliecības pēdējo ciparu +1.
+\begin{table}
+\begin{tabular}{|c|c|}
+\hline
+R1 & 10ohm  \\
+\hline 
+R2 &  4ohm   \\
+\hline
+V1 &   9,3v  \\
+\hline
+U_R_1 &   9,3v   \\
+\hline
+U_R_2 &    2,657v   \\
+\hline
+\end{tabular}
+\caption{Shēmas elementu vērtības  }
+\label{1}
+\end{table}
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw
+(0,4) to [V, l_=$Us$] (0,0)
+to [short, *-] (6,0)
+to (6,2)
+to [R, l_=$R$] (6,4)
+to [short, ] (5,4)
+to (3,4) to [open, ] (0,4)
+to [short, ] (1,4)
+to [R, l=$R$] (3,4)
+to (4,4)
+;
+\end{circuitikz}
+\end {center}
+\chapter{Praktiskā daļa}
+\section {Darbs ar GEDA programmām}
+\subsection{darbs ar gschem}
+
+\begin{figure}[h]
+\rotatebox{-90}{{\includegraphics[width=10cm,trim={3cm 3cm 3cm 3cm}]{01.ps}}}
+\caption{GSCHEM elektriskā shēma}
+\label{2}
+\end{figure}
+
+\subsection{darbs ar gnetlist}
+\verbatiminput{01.net}
+\subsection{darbs ar ngspice}
+\begin{figure}[h]
+\includegraphics[width=7cm]{011.ps}
+\includegraphics[width=7cm]{012.ps}
+\caption{Gschem shēmas signālu grafiki }
+\label{3}
+\end{figure}
+
+
+\section{Darbs ar QUCS}
+
+\begin{figure}[]
+\rotatebox{-90}{{\includegraphics[width=6cm,trim={1,3cm 1cm 16cm 21cm}]{print.ps}}}
+\caption{QUCS simulācijas shēma ar sweep parametriem }
+\label{4}
+\end{figure}
+
+\begin{figure}[]
+\rotatebox{-90}{{\includegraphics[width=7cm,trim={0cm 2,1cm 15,9cm 17cm}]{print2.ps}}}
+\caption{QUCS grafiks ar shēmas datiem }
+\label{5}
+\end{figure}
+
+Izmantojot programu QUCS\cite{gramata1} tika izveidota shēma ar avotu un divām pretestībām.
+Principiālā shēma-(Shēmas elementiem\cite{gramata2} tika piešķirti pirms tam izrēķināti nomināli un nosimulēta shēma.Shēmas izveide bija viegla un noderīga priekšmetos kā ETP.)
+Līdzstrāvas simulācijas-(Tika izveidota Sweep simulācija,kurā bija attēloti simulācijas dati.Dati,kas tika atspoguļoti ir noderīgi,lai bez iedziļināšanās varētu noskaidrot shēmas datus.)
+SWEEP simulācijas un grafiki-(Izmantojot grafika un tabulas funkciajs tika izveidots grafiks un tabula, kuras atspoguļo datus un sakarības par izveidoto shēmu.No šiem datiem var secināt daudzas svarīgas lietas par shēmu piemēram spriegumus un pretestības)
+
+
+
+\begin{thebibliography}{9}
+\bibitem{gramata1}
+Textbook by Paul Horowitz and Winfield Hill
+The Art of Electronics , Cambridge University Press , 1980.
+
+\bibitem{gramata2}
+Textbook by Adel Sedra and Kenneth C. Smith
+Microelectronic circuits , 1982.
+\end{thebibliography}
+\end{document}
